@@ -7,12 +7,12 @@ export async function GET() {
                 createdAt: 'desc'
             }
         })
-        if(!users){
-            return []
+        if(!users || users.length === 0){
+            return Response.json([])
         }
 
         return Response.json(users)
    } catch (error) {
-        return []
+        return;
    }
 }
