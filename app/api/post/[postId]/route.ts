@@ -1,8 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import prisma from '@/app/lib/prismadb';
 import { NextRequest } from "next/server";
 
-export default async function GET(
+export async function GET(
     req: NextRequest
 ){
    try {
