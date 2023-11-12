@@ -1,15 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from '@/app/lib/prismadb';
+import { NextRequest } from "next/server";
 
 export default async function GET(
-    req: NextApiRequest,
-    res: NextApiResponse
+    req: NextRequest
 ){
    try {
-        const { postId } = req.query;
+        const postId  = req.nextUrl.searchParams.get('postId');
 
         if(!postId || typeof postId !== 'string'){
-            return res.status(500).end()
+            return Response.error()
         }
 
         const post = await prisma.post.findUnique({
@@ -23,11 +23,11 @@ export default async function GET(
         });
 
         if(!post) {
-            return res.status(400).end()
+            return Response.error()
         }
 
-        return res.status(200).json(post)
+        return Response.json(post)
    } catch (error) {
-        return res.status(400).end()
+        return Response.error()
    }
 }
