@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]";
+import { handler } from "../api/auth/[...nextauth]";
 import prisma from '@/app/lib/prismadb'
 
 export async function getSession() {
-    return await getServerSession(authOptions)
+    return await getServerSession(handler)
 }
 
 
