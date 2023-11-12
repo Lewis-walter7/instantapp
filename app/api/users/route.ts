@@ -1,5 +1,4 @@
 import prisma from '@/app/lib/prismadb'
-import { NextResponse } from 'next/server'
 
 export async function GET() {
    try {
@@ -9,7 +8,7 @@ export async function GET() {
             }
         })
 
-        return NextResponse.json(users)
+        return Response.json(users)
    } catch (error) {
         return null
    }
