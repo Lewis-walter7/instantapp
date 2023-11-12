@@ -1,13 +1,13 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import bcrypt from 'bcrypt'
-import { NextAuthOptions } from 'next-auth'
+import { AuthOptions } from 'next-auth'
 import NextAuth from 'next-auth/next'
 import FaceBookProvder from 'next-auth/providers/facebook'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import prisma from '@/app/lib/prismadb'
 
 
-export const authOptions: NextAuthOptions = {
+export const handler: AuthOptions = NextAuth({
     adapter: PrismaAdapter(prisma),
     providers: [
         FaceBookProvder({
@@ -59,6 +59,6 @@ export const authOptions: NextAuthOptions = {
         strategy: 'jwt'
     },
     secret: process.env.NEXTAUTH_SECRET
-}
+})
 
-export default NextAuth(authOptions)
+export {handler as GET, handler as POST}
