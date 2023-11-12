@@ -7,9 +7,12 @@ export async function GET() {
                 createdAt: 'desc'
             }
         })
+        if(!users){
+            return []
+        }
 
         return Response.json(users)
    } catch (error) {
-        return null
+        return []
    }
 }
